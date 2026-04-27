@@ -18,12 +18,11 @@ const supportSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-supportSchema.pre('save', async function (next) {
+supportSchema.pre('save', async function () {
   if (!this.ticketId) {
     const count = await mongoose.model('Support').countDocuments();
     this.ticketId = `TKT-${2000 + count + 1}`;
   }
-  next();
 });
 
 module.exports = mongoose.model('Support', supportSchema);

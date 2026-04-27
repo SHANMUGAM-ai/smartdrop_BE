@@ -57,11 +57,10 @@ productSchema.index({ category: 1, isActive: 1 });
 productSchema.index({ vendor: 1 });
 
 // Calculate offer price before saving
-productSchema.pre('save', function (next) {
+productSchema.pre('save', function () {
   if (this.offer && this.offer.discountPercent > 0) {
     this.offer.offerPrice = parseFloat((this.price * (1 - this.offer.discountPercent / 100)).toFixed(2));
   }
-  next();
 });
 
 module.exports = mongoose.model('Product', productSchema);
