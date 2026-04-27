@@ -11,7 +11,7 @@ const { requireDatabase } = require('./middleware/dbMiddleware');
 const app = express();
 
 // Middleware
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173').split(',');
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173' || 'https://smartdrop-fe.vercel.app').split(',');
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
